@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile-first styles */
+@layer base {
+  html {
+    font-family: 'Roboto', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    @apply bg-background text-text-primary antialiased;
+    overscroll-behavior-y: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+}
+
+/* Mobile animations */
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-in-out;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Native-like animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Mobile tap states */
+@layer components {
+  .tap-highlight {
+    @apply active:opacity-70 transition-opacity duration-150;
+  }
+
+  .bottom-sheet {
+    @apply fixed inset-x-0 bottom-0 rounded-t-3xl bg-white shadow-lg transform transition-transform duration-300 ease-out;
+  }
+
+  .mobile-card {
+    @apply rounded-2xl bg-white shadow-sm p-4;
+  }
+
+  .mobile-button {
+    @apply tap-highlight rounded-full font-medium text-center py-3 px-6 transition-colors;
+  }
+}
